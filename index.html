@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Hitung Keuntungan Penjualan Tiket Bioskop</title>
+            <link rel="stylesheet" href="rey.cs">
+        </head>
+    <body>
+    
+        <div class="container">
+            <h1>Hitung Keuntungan Penjualan Tiket Bioskop</h1>
+    
+        <form action="/hitung-keuntungan" method="post">
+    
+        <div class="form-group">
+          <label for="jumlah-tiket-vip">Jumlah Tiket VIP</label>
+          <input type="number" class="form-control" id="jumlah-tiket-vip" name="jumlah-tiket-vip" min="0" max="50">
+        </div>
+    
+        <div class="form-group">
+          <label for="jumlah-tiket-eksekutif">Jumlah Tiket Eksekutif</label>
+          <input type="number" class="form-control" id="jumlah-tiket-eksekutif" name="jumlah-tiket-eksekutif" min="0" max="50">
+        </div>
+    
+        <div class="form-group">
+          <label for="jumlah-tiket-ekonomi">Jumlah Tiket Ekonomi</label>
+          <input type="number" class="form-control" id="jumlah-tiket-ekonomi" name="jumlah-tiket-ekonomi" min="0" max="50">
+        </div>
+    
+        <button type="submit" class="btn btn-primary" onclick="hitungKeuntungan(jumlahTiket, kelas)">Hitung</button>
+    
+      </form>
+    
+      <div class="hasil">
+        <div class="hasil"></div>
+        <div id="output-vip"></div>
+        <div id="output-eksekutif"></div>
+        <div id="output-ekonomi"></div>
+        <div id="output-total"></div>
+      </div>
+        </div>
+    <script>
+    
+    function hitungKeuntungan(jumlahTiket, kelas) {
+      // Ketentuan keuntungan
+      var keuntungan = 0;
+      if (jumlahTiket >= 35) {
+        keuntungan = 25;
+      } else if (jumlahTiket >= 20) {
+        keuntungan = 15;
+      } else {
+        keuntungan = 5;
+      }
+    
+      // Hitung keuntungan
+      return jumlahTiket * keuntungan / 100;
+    }
+       // Event handler untuk tombol "Hitung"
+    document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+    
+      // Dapatkan data input
+      var jumlahTiketVIP = document.querySelector("#jumlah-tiket-vip").value;
+      var jumlahTiketEksekutif = document.querySelector("#jumlah-tiket-eksekutif").value;
+      var jumlahTiketEkonomi = document.querySelector("#jumlah-tiket-ekonomi").value;
+    
+      // Hitung keuntungan per kelas
+      var keuntunganVIP = hitungKeuntungan(jumlahTiketVIP, "VIP");
+      var keuntunganEksekutif = hitungKeuntungan(jumlahTiketEksekutif, "Eksekutif");
+      var keuntunganEkonomi = hitungKeuntungan(jumlahTiketEkonomi, "Ekonomi");
+    
+      // Hitung keuntungan secara keseluruhan
+      var keuntunganTotal = keuntunganVIP + keuntunganEksekutif + keuntunganEkonomi;
+    
+      // Tampilkan output
+      var outputVIP = `
+        <p>Kelas VIP: ${keuntunganVIP}%</p>
+      `;
+      var outputEksekutif = `
+        <p>Kelas Eksekutif: ${keuntunganEksekutif}%</p>
+      `;
+      var outputEkonomi = `
+        <p>Kelas Ekonomi: ${keuntunganEkonomi}%</p>
+      `;
+      var outputTotal = `
+        <p>Keuntungan secara keseluruhan: ${keuntunganTotal}%</p>
+      `;
+    
+      document.getElementById("output-vip").innerHTML = outputVIP;
+      document.getElementById("output-eksekutif").innerHTML = outputEksekutif;
+      document.getElementById("output-ekonomi").innerHTML = outputEkonomi;
+      document.getElementById("output-total").innerHTML = outputTotal;
+    });
+    
+        // // mencari luas persegi panjang
+        // let panjang = 60;
+        // let lebar = 40;
+        // luas=panjang*lebar
+        // console.log(luas)
+
+        // // mencari luas lingkaran
+        // console.log("luas lingkaran dengan jari2 10");
+        // const phi = 3.14;
+        // let r = 10;
+        // hasil = phi * r * r;
+        // console.log(hasil);
+
+        // // keliling persegi panjang
+        // let panjang1 = 200;
+        // let lebar1 = 150;
+        // console.log("keliling persegi panjang");
+        // keliling=2*panjang1 + 2*lebar1;
+        // console.log(keliling)
+
+        // // mencari luas segitiga
+        // let alas = 70;
+        // let tinggi = 40;
+        // luasSegitiga = alas * tinggi *(1/2)
+        // console.log(`luas segitiga dengan alas 70 dan tinggi 40 adalah ${luasSegitiga}`)
+
+        // let Age = 17 
+
+        // if (Age >= 17) {
+        //     console.log ("Boleh nonton karena diatas 17 tahun")
+        // } else
+        // console.log("Tidak boleh menonton")
+
+
+        // let Lampu = 0
+
+        // if (Lampu <= 3) {
+        //     console.log ("on")
+        // } else
+        // console.log ("off")
+
+
+// Menentukan sebuah diskon
+        // let sapi = 100000
+        // let kambing = 50000
+        // let ayam = 25000
+        // let totalHarga = sapi + kambing + ayam
+
+        // if (totalHarga > 100000) {
+        //     let diskon = 20/100 * totalHarga;
+        //     let setelahDiskon = totalHarga - diskon;
+        //     console.log ("total belanjaan setelah diskon" + setelahDiskon)
+        // } 
+        // else {
+        //     console.log ("total belanjaan anda tidak mendapatkan diskon" + totalHarga)
+        // }
+
+
+// // menghitung gaji lembur
+//         let Jam = 9
+
+//         if (Jam < 6){
+//             console.log("100000")
+//         }
+//         else if (Jam == 6){
+//             console.log("200000")
+//         }
+//         else if (Jam > 6){
+//             console.log("300000")
+//         }
+//         else 
+//         console.log("0")
+
+// // Menentukan kondisi pintu air
+//         let tinggiAir = "700";
+//         let status ;
+
+//         if (tinggiAir <= 500) {
+//             status = "status aman";
+//         } else if (tinggiAir <= 600) {
+//             status = "status waspada";
+//         } else if (tinggiAir <= 650) {
+//             status = "status siaga 2";
+//         } else if (tinggiAir > 650) {
+//             status = "status siaga 1";
+//         } else {
+//             status = "selesai";
+//         }
+
+//         console.log("tinggiAir")
+//         console.log(status)
+
+// Bilangan ganjil genap positif negatif
+        // let Angka= -3;
+
+        // if (Angka >= 0){
+        // console.log ("Positif")
+
+        // if (Angka%2==0){
+        // console.log ("Genap") }
+
+        // else {
+        // console.log ("Ganjil")}
+        // }
+        
+
+        // else {
+        // console.log ("Negatif")
+
+        // if (Angka%2==0){
+        // console.log ("Genap") }
+
+        // else {
+        // console.log ("Ganjil")}
+        // }
+    //     let Jalur ;
+    //     let nilaiUn = 69;
+        
+
+    //     if (nilaiUn >= 90 && nilaiUn <= 100) {
+    //         console.log ("nilai sempurna anda lolos")
+    //     } else if (nilaiUn >= 75 && nilaiUn <= 90) {
+    //         if (Jalur == "Prestasi"){
+    //         console.log("anda lolos jalur prestasi")
+    //     } 
+    //     else if (Jalur == "Rapot"){
+    //         console.log("anda lolos jalur Rapot")
+    //     } 
+    // }
+
+    // else {
+    //     console.log("anda harus mengikuti tes mandiri")
+    // }
+
+// Menghitung luas persegi panjang
+    // let panjang = 100
+    //     let lebar = 50
+    //     luas = panjang * lebar
+    //     console.log(`luas persegi panjang dengan panjang 100 dan lebar 50 adalah ${luas}`)
+        
+    </script>
+</body>
+</html>
